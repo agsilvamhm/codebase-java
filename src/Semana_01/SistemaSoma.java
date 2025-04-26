@@ -12,6 +12,14 @@ public class SistemaSoma {
         System.out.println("Insira o segundo valor: ");
         valor2 = input.nextInt();
 
+        if (valor1 > valor2){
+            System.out.println(valor1 + " é maior do que o " + valor2);
+        } else if (valor2 > valor1){
+            System.out.println(valor2 + " é maior do que o " + valor1);
+        } else {
+            System.out.println(valor1 + " é igual ao " + valor2);
+        }
+
         int resultado = valor1 + valor2;
 
         System.out.println("O resultado da soma de " + valor1 + " + " + valor2 + " é igual a " + resultado);
