@@ -30,6 +30,7 @@ public class Calculadora {
     }
 
     private double divisao(double valor1, double valor2){
+        if (valor2 == 0) return 0;
         return valor1 / valor2;
     }
 }
