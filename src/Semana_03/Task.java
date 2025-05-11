@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Task {
-    private LocalDateTime dataCriacao;
+    private String dataCriacao;
     private String descricao;
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
     public Task(String descricao){
         this.descricao = descricao;
-        this.dataCriacao = LocalDateTime.now();
+        this.dataCriacao = LocalDateTime.now().format(formatter);
     }
 
     public String getDescricao() {
@@ -19,7 +19,7 @@ public class Task {
     }
 
     public String getDataCriacao() {
-        return dataCriacao.format(formatter);
+        return dataCriacao;
     }
 
     @Override
