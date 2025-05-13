@@ -5,9 +5,10 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class Principal {
+    static ArrayList<Task> tarefas = new ArrayList<>();
+    static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {
-        ArrayList<Task> tarefas = new ArrayList<>();
-        Scanner input = new Scanner(System.in);
         int opcao = 0;
 
         while(opcao != 5){
@@ -24,16 +25,16 @@ public class Principal {
 
             switch (opcao){
                 case 1:
-                    newTask(tarefas);
+                    newTask();
                     break;
                 case 2:
-                    removeTask(tarefas);
+                    removeTask();
                     break;
                 case 3:
-                    listarTaskDescricao(tarefas);
+                    listarTaskDescricao();
                     break;
                 case 4:
-                    listarTaskData(tarefas);
+                    listarTaskData();
                     break;
                 case 5:
                     System.out.println("Aplicação finalizada !");
@@ -46,8 +47,8 @@ public class Principal {
         }
     }
 
-    private static void newTask(ArrayList<Task> tarefas){
-        Scanner input = new Scanner(System.in);
+    private static void newTask(){
+        input.nextLine();
         boolean isExist = false;
         System.out.println("Informe a descrição da tarefa: ");
         String descricao = input.nextLine();
@@ -66,22 +67,22 @@ public class Principal {
         }
     }
 
-    private static void listarTaskDescricao(ArrayList<Task> tarefas){
+    private static void listarTaskDescricao(){
         tarefas.sort(Comparator.comparing(Task::getDescricao));
         for (Task task: tarefas){
             System.out.println(task);
         }
     }
 
-    private static void listarTaskData(ArrayList<Task> tarefas){
+    private static void listarTaskData(){
         tarefas.sort(Comparator.comparing(Task::getDataCriacao));
         for (Task task: tarefas){
             System.out.println(task);
         }
     }
 
-    private static void removeTask(ArrayList<Task> tarefas){
-        Scanner input = new Scanner(System.in);
+    private static void removeTask(){
+        input.nextLine();
         boolean isExist = false;
         int indice = -1;
 
@@ -105,5 +106,4 @@ public class Principal {
             System.out.println("** Tarefa não localizada! **");
         }
     }
-
 }
