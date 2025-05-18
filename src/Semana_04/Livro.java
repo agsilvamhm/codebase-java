@@ -1,6 +1,6 @@
 package Semana_04;
 
-public class Livro {
+public abstract class Livro {
     private String titulo;
     private String autor;
     private String isbn;
@@ -19,5 +19,17 @@ public class Livro {
 
     public double calcularPrecoTotal(){
         return getPreco();
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public String getIsbn() {
+        return isbn;
     }
 }

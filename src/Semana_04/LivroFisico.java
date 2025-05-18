@@ -17,4 +17,15 @@ public class LivroFisico extends Livro{
     public double calcularPrecoTotal(){
         return this.getPreco() + this.getFrete();
     }
+
+    @Override
+    public String toString() {
+        return "Livro : {" +
+                "Titulo= " + getTitulo() +
+                ", Autor= " + getAutor() +
+                ", Isbn= " + getIsbn() +
+                ", Preço Total R$ " + calcularPrecoTotal() +
+                ", Frete R$ " + getFrete() +
+                '}';
+    }
 }

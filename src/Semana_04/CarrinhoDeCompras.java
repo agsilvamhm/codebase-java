@@ -16,4 +16,21 @@ public class CarrinhoDeCompras {
         }
         return total;
     }
+
+    public void adicionarLivro(Livro livro){
+        this.lista.add(livro);
+    }
+
+    public void imprimirCarrinho(){
+        double precototal = 0.0;
+
+        for(Livro l :lista){
+            System.out.println(l);
+            precototal += l.calcularPrecoTotal();
+        }
+        System.out.println();
+        System.out.println("+------------------------------------+");
+        System.out.println("|  Valor total do carrinho R$ " + precototal);
+
+    }
 }
