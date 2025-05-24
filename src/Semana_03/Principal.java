@@ -53,11 +53,12 @@ public class Principal {
         System.out.println("Informe a descrição da tarefa: ");
         String descricao = input.nextLine();
         for(Task tarefa: tarefas){
-            if (tarefa.getDescricao().equals(descricao)){
+            if (tarefa.getDescricao().equalsIgnoreCase(descricao)){
                 isExist = true;
                 System.out.println("*** Tarefa já existe  ***");
                 System.out.println(tarefa);
                 System.out.println("*************************");
+                break;
             }
         }
 
@@ -68,15 +69,19 @@ public class Principal {
     }
 
     private static void listarTaskDescricao(){
-        tarefas.sort(Comparator.comparing(Task::getDescricao));
-        for (Task task: tarefas){
+        ArrayList<Task> clone = new ArrayList<>();
+        clone = tarefas;
+        clone.sort(Comparator.comparing(Task::getDescricao));
+        for (Task task: clone){
             System.out.println(task);
         }
     }
 
     private static void listarTaskData(){
-        tarefas.sort(Comparator.comparing(Task::getDataCriacao));
-        for (Task task: tarefas){
+        ArrayList<Task> clone = new ArrayList<>();
+        clone = tarefas;
+        clone.sort(Comparator.comparing(Task::getDataCriacao));
+        for (Task task: clone){
             System.out.println(task);
         }
     }

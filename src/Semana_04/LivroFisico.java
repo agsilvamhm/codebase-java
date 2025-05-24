@@ -14,6 +14,7 @@ public class LivroFisico extends Livro{
         return this.frete;
     }
 
+    @Override
     public double calcularPrecoTotal(){
         return this.getPreco() + this.getFrete();
     }
