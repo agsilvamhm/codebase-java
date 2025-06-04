@@ -2,6 +2,7 @@ package ProjetoFinal.service;
 
 import ProjetoFinal.dao.ClienteDao;
 import ProjetoFinal.entity.Cliente;
+import ProjetoFinal.entity.Endereco;
 
 public class ClienteService {
     ClienteDao clienteDao;
@@ -73,5 +74,13 @@ public class ClienteService {
             Cliente cliente = clienteDao.getMapaClientes().get(chave);
             System.out.println(cliente);
         }
+    }
+
+    public void setEndereco(Cliente cliente, Endereco endereco){
+        clienteDao.setEndereco(cliente, endereco);
+    }
+
+    public Cliente getCliente(String cpf){
+        return clienteDao.getCliente(cpf);
     }
 }
