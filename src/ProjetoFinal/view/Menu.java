@@ -124,23 +124,8 @@ public class Menu {
     }
 
     private void cadastrarCliente(){
-        input.nextLine();
-        System.out.println();
-        System.out.print("Informe o nome do cliente: ");
-        String nome = input.nextLine();
-        System.out.print("Informe o CPF: ");
-        String cpf = input.nextLine();
-        System.out.print("Informe a data de nascimento: ");
-        String dataNascimento = input.nextLine();
-        System.out.print("Informe a categoria (1-Comum, 2-Super, 3-Premium): ");
-        int identificador = input.nextInt();
-
-        Cliente cliente = new Cliente(cpf,nome,dataNascimento, Categoria.fromCategoria(identificador));
-        if(clienteService.adicionarCliente(cliente)){
-            System.out.println("*** Cliente cadastrado com sucesso! ***");
-        } else {
-            System.out.println("--- Não foi possível cadastrar o cliente! ---");
-        }
+        FormCliente form = new FormCliente();
+        form.Cadastro(clienteService);
     }
 
     private void listarClientes(){
@@ -148,24 +133,8 @@ public class Menu {
     }
 
     private void cadastrarEndereco(){
-        input.nextLine();
-        System.out.println();
-        System.out.print("Informe o CEP: ");
-        String cep = input.nextLine();
-        System.out.print("Informe a sigla do estado: ");
-        String uf = input.nextLine();
-        System.out.print("Informe a cidade: ");
-        String cidade = input.nextLine();
-        System.out.print("Informe o bairro: ");
-        String bairro = input.nextLine();
-        System.out.print("Informe o logradouro: ");
-        String logradouro = input.nextLine();
-        System.out.print("Informe o número: ");
-        int numero = input.nextInt();
-
-        Endereco endereco = new Endereco(cep, uf, cidade, bairro, logradouro, numero);
-        enderecoService.adicionarEndereco(endereco);
-        System.out.println("*** Endereço incluído com sucesso ***");
+        FormEndereco form = new FormEndereco();
+        form.cadastro(enderecoService);
     }
 
     private void cadastrarConta(){
