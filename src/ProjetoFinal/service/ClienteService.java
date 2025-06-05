@@ -2,6 +2,7 @@ package ProjetoFinal.service;
 
 import ProjetoFinal.dao.ClienteDao;
 import ProjetoFinal.entity.Cliente;
+import ProjetoFinal.entity.Conta;
 import ProjetoFinal.entity.Endereco;
 
 public class ClienteService {
@@ -82,5 +83,9 @@ public class ClienteService {
 
     public Cliente getCliente(String cpf){
         return clienteDao.getCliente(cpf);
+    }
+
+    public Cliente addConta(Conta conta, Cliente cliente){
+        return clienteDao.addConta(conta, cliente);
     }
 }

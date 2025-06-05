@@ -1,9 +1,8 @@
 package ProjetoFinal.view;
 
-import ProjetoFinal.entity.Categoria;
-import ProjetoFinal.entity.Cliente;
-import ProjetoFinal.entity.Endereco;
+import ProjetoFinal.entity.*;
 import ProjetoFinal.service.ClienteService;
+import ProjetoFinal.service.ContaService;
 import ProjetoFinal.service.EnderecoService;
 
 import java.util.Scanner;
@@ -12,10 +11,11 @@ public class Menu {
     Scanner input = new Scanner(System.in);
     ClienteService clienteService = new ClienteService();
     EnderecoService enderecoService = new EnderecoService();
+    ContaService contaService = new ContaService();
 
     public void menuPrincipal(){
         int opcao = 0;
-        while(opcao !=2){
+        while(opcao !=3){
           desenharMenuPrincipal();
           opcao = input.nextInt();
           switch (opcao){
@@ -23,6 +23,9 @@ public class Menu {
                   menuCliente();
                   break;
               case 2:
+                  menuConta();
+                  break;
+              case 3:
                   System.out.println("***  Aplicação finalizada!  ***");
                   break;
               default:
@@ -62,18 +65,41 @@ public class Menu {
         }
     }
 
+    private void menuConta(){
+        input.nextLine();
+        int opcao = 0;
+        while(opcao !=3){
+            desenharMenuConta();
+            opcao = input.nextInt();
+            switch (opcao){
+                case 1:
+                    cadastrarConta();
+                    break;
+                case 2:
+                    imprimirContas();
+                    break;
+                case 3:
+                    System.out.println("***  Aplicação finalizada!  ***");
+                    break;
+                default:
+                    System.out.println("Operação inválida!");
+            }
+        }
+    }
+
     private void desenharMenuPrincipal(){
-        System.out.println("+-------------------[ Sistema Bancário ]----------------------+");
+        System.out.println("+-------------------[ Menu Principal ]-----------------------+");
         System.out.println("|                                                             |");
         System.out.println("|   01 - Cadastro de cliente                                  |");
-        System.out.println("|   02 - Sair da aplicação                                    |");
+        System.out.println("|   02 - Cadastro de conta                                    |");
+        System.out.println("|   03 - Sair da aplicação                                    |");
         System.out.println("|                                                             |");
         System.out.println("+-------------------------------------------------------------+");
         System.out.print("| Informe a opção: ");
     }
 
     private void desenharMenuCliente(){
-        System.out.println("+---------------[ Menu cliente selecionado ]------------------+");
+        System.out.println("+------------------[ Menu de cliente  ]-----------------------+");
         System.out.println("|                                                             |");
         System.out.println("|   01 - Criar um cliente                                     |");
         System.out.println("|   02 - Listar clientes cadastrados                          |");
@@ -81,6 +107,17 @@ public class Menu {
         System.out.println("|   04 - Listar endereços cadastrados                         |");
         System.out.println("|   05 - Incluir endereço no cliente                          |");
         System.out.println("|   06 - Voltar ao menu principal                             |");
+        System.out.println("|                                                             |");
+        System.out.println("+-------------------------------------------------------------+");
+        System.out.print("| Informe a opção: ");
+    }
+
+    private void desenharMenuConta(){
+        System.out.println("+--------------------[ Menu de conta ]------------------------+");
+        System.out.println("|                                                             |");
+        System.out.println("|   01 - Criar conta                                          |");
+        System.out.println("|   02 - Imprimir contas                                      |");
+        System.out.println("|   03 - Voltar ao menu principal                             |");
         System.out.println("|                                                             |");
         System.out.println("+-------------------------------------------------------------+");
         System.out.print("| Informe a opção: ");
@@ -131,6 +168,26 @@ public class Menu {
         System.out.println("*** Endereço incluído com sucesso ***");
     }
 
+    private void cadastrarConta(){
+        input.nextLine();
+        Conta conta;
+        System.out.println();
+        System.out.print("Informe o tipo da conta (1 - Conta corrente, 2 - Conta poupança): ");
+        int tipo = input.nextInt();
+        input.nextLine();
+        System.out.print("Informe o CPF do cliente: ");
+        String cpf = input.nextLine();
+
+        if (tipo == 1) {
+            conta = new ContaCorrente(clienteService.getCliente(cpf));
+        } else {
+            conta = new ContaPoupanca(clienteService.getCliente(cpf));
+        }
+        contaService.addConta(conta);
+        clienteService.addConta(conta, conta.getCliente());
+    }
+
+
     private void listarEnderecos(){
         enderecoService.listarEndereco();
     }
@@ -145,6 +202,9 @@ public class Menu {
         int endereco = input.nextInt();
 
         clienteService.setEndereco(clienteService.getCliente(cpf), enderecoService.getEndereco(endereco));
+    }
 
+    private void imprimirContas(){
+        contaService.imprimirContas();
     }
 }

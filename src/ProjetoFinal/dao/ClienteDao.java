@@ -1,6 +1,7 @@
 package ProjetoFinal.dao;
 
 import ProjetoFinal.entity.Cliente;
+import ProjetoFinal.entity.Conta;
 import ProjetoFinal.entity.Endereco;
 
 import java.util.ArrayList;
@@ -25,5 +26,10 @@ public class ClienteDao {
 
     public Cliente getCliente(String cpf){
         return mapaClientes.get(cpf);
+    }
+
+    public Cliente addConta(Conta conta, Cliente cliente){
+        cliente.addConta(conta);
+        return cliente;
     }
 }

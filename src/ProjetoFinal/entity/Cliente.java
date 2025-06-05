@@ -1,7 +1,6 @@
 package ProjetoFinal.entity;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Cliente {
     private int id;
@@ -17,6 +16,7 @@ public class Cliente {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.categoria = categoria;
+        this.contas = new ArrayList<>();
     }
 
     public void setId(int id){
@@ -35,6 +35,10 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    public void addConta(Conta conta){
+        this.contas.add(conta);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -49,14 +53,19 @@ public class Cliente {
 
     @Override
     public String toString() {
+        String lista = "";
+        for (Conta conta : contas) {
+            lista += conta.toString() + "\n";
+        }
+
         return "Cliente{" +
-                "Id=" + id + '\'' +
-                "cpf='" + cpf + '\'' +
+                "Id=" + id +
+                ", cpf='" + cpf + '\'' + // Removi o '\'' extra aqui
                 ", nome='" + nome + '\'' +
                 ", dataNascimento='" + dataNascimento + '\'' +
-                ", categoria=" + categoria +
-                ", endereco=" + endereco +
-                ", contas=" + contas +
-                '}';
+                ", categoria=" + categoria + // Assumindo que Categoria tem um toString() adequado
+                ", endereco=" + endereco +  // Assumindo que Endereco tem um toString() adequado
+                ", contas=[" + lista +
+                "]}";
     }
 }
