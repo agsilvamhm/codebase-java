@@ -17,4 +17,8 @@ public class ContaService {
     public void imprimirContas(){
         contaDao.getListaContas().forEach(System.out::println);
     }
+
+    public Conta getConta(int numero){
+        return contaDao.getConta(numero);
+    }
 }

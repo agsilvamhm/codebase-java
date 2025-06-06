@@ -19,4 +19,13 @@ public class ContaDao {
     public List<Conta> getListaContas(){
         return listaContas;
     }
+
+    public Conta getConta(int numero){
+        for (Conta cont: listaContas){
+            if (cont.getIdConta() == numero){
+                return cont;
+            }
+        }
+        return null;
+    }
 }

@@ -68,7 +68,7 @@ public class Menu {
     private void menuConta(){
         input.nextLine();
         int opcao = 0;
-        while(opcao !=3){
+        while(opcao !=5){
             desenharMenuConta();
             opcao = input.nextInt();
             switch (opcao){
@@ -79,6 +79,12 @@ public class Menu {
                     imprimirContas();
                     break;
                 case 3:
+                    lancarMovimentacao();
+                    break;
+                case 4:
+                    imprimirLancamentos();
+                    break;
+                case 5:
                     System.out.println("***  Aplicação finalizada!  ***");
                     break;
                 default:
@@ -117,7 +123,9 @@ public class Menu {
         System.out.println("|                                                             |");
         System.out.println("|   01 - Criar conta                                          |");
         System.out.println("|   02 - Imprimir contas                                      |");
-        System.out.println("|   03 - Voltar ao menu principal                             |");
+        System.out.println("|   03 - Efetuar lançamentos                                  |");
+        System.out.println("|   04 - Listar lançamentos                                   |");
+        System.out.println("|   05 - Voltar ao menu principal                             |");
         System.out.println("|                                                             |");
         System.out.println("+-------------------------------------------------------------+");
         System.out.print("| Informe a opção: ");
@@ -175,5 +183,15 @@ public class Menu {
 
     private void imprimirContas(){
         contaService.imprimirContas();
+    }
+
+    private void lancarMovimentacao(){
+        FormMovimentacao form = new FormMovimentacao();
+        form.lancarMovimentacao(contaService);
+    }
+
+    private void imprimirLancamentos(){
+        RelMovimentacao rel = new RelMovimentacao();
+        rel.imprimir(contaService);
     }
 }

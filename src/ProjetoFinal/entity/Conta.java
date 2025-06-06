@@ -3,8 +3,6 @@ package ProjetoFinal.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ProjetoFinal.entity.TipoMovimentacao.SAQUE;
-
 public abstract class Conta {
     private static int idConta;
     private double saldo;
@@ -36,27 +34,34 @@ public abstract class Conta {
         return this.cliente;
     }
 
-    public void adicionarMovimentacao(TipoMovimentacao movimento, double valor){
-        if ( valor <=0){
+    public double getSaldo(){
+        return this.saldo;
+    }
+
+    public void adicionarMovimentacao(Movimentacao movimentacao){
+        if ( movimentacao.getValor() <=0){
             System.out.println("Valor da transação deve ser positivo!");
             return;
         }
 
-        if (movimento.getOperacao() < 0 && (this.saldo + (valor * movimento.getOperacao()) < 0 )) {
+        if (movimentacao.getTipo().getOperacao() < 0 && (this.saldo + (movimentacao.getValor() * movimentacao.getTipo().getOperacao()) < 0 )) {
             System.out.println("Saldo insuficiente!");
             return;
         }
 
-        Movimentacao novoMovimentacao = new Movimentacao(movimento, valor);
-        this.movimentacoes.add(novoMovimentacao);
-        this.saldo += (valor * movimento.getOperacao());
+        this.movimentacoes.add(movimentacao);
+        this.saldo += (movimentacao.getValor() * movimentacao.getTipo().getOperacao());
+    }
+
+    public void imprimirMovimentacoes(){
+        this.movimentacoes.forEach(System.out::println);
     }
 
     @Override
     public String toString() {
         return "Conta{" +
                 "cartoes=" + cartoes +
-                ", saldo=" + saldo +
+                ", saldo= " + saldo +
                 ", cliente=" + cliente +
                 '}';
     }

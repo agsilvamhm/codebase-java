@@ -17,7 +17,8 @@ public class ContaCorrente extends Conta{
     @Override
     public String toString() {
         return "Conta Corrente{" +
-                "Número = " + getIdConta() +
+                " Número = " + getIdConta() +
+                " Saldo  = " + getSaldo() +
                 '}';
     }
 }
